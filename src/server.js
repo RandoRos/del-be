@@ -1,4 +1,5 @@
 const app = require('./app');
+const process = require('node:process');
 
 init();
 

@@ -120,42 +120,52 @@ app.post('/jobs/:job_id/pay', getProfile, async (req, res) => {
   res.end();
 });
 
-app.post('/balances/deposit/:userId', getProfile, async (req, res) => {
+app.post('/balances/deposit/:userId', async (req, res) => {
   const {userId} = req.params;
+  const {amount} = req.body;
   const { Profile, Job, Contract } = req.app.get('models');
 
-  if (req.profile.type === 'client') {
-    const jobs = await Job.findAll({
-      attributes: [
-        [sequelize.fn('sum',sequelize.col('price')), 'total'],
-      ],
-      include: [
-        {
-          model: Contract,
-          attributes: [],
-          where: {
-            clientId: req.profile.id,
-          },
-        },
-      ],
-      where: {
-        paid: null,
-      },
-      raw: true,
-    });
+  const user = await Profile.findOne({
+    where: {
+      id: userId,
+    },
+  });
 
-    await Profile.update({
-      balance: req.profile.balance + Math.floor(jobs[0].total * 0.25),
-    }, {
-      where: {
-        id: req.profile.id,
-      },
-    });
-
-    res.send(req.profile);
+  if (user && user.type !== 'client') {
+    res.status(404).end();
   }
 
-  res.end();
+  const jobs = await Job.findAll({
+    attributes: [
+      [sequelize.fn('sum',sequelize.col('price')), 'total'],
+    ],
+    include: [
+      {
+        model: Contract,
+        attributes: [],
+        where: {
+          clientId: user.id,
+        },
+      },
+    ],
+    where: {
+      paid: null,
+    },
+    raw: true,
+  });
+
+  if (jobs[0].total * 0.25 > amount) {
+    await Profile.update({
+      balance: user.balance + amount,
+    }, {
+      where: {
+        id: user.id,
+      },
+    });
+    res.send('success');
+  } else {
+    res.send('This amount cannot be deposited');
+  }
 });
 
 app.get('/admin/best-profession', async (req, res) => {

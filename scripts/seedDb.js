@@ -16,7 +16,7 @@ async function seed() {
       lastName: 'Potter',
       profession: 'Wizard',
       balance: 1150,
-      type:'client'
+      type:'client',
     }),
     Profile.create({
       id: 2,
@@ -24,7 +24,7 @@ async function seed() {
       lastName: 'Robot',
       profession: 'Hacker',
       balance: 231.11,
-      type:'client'
+      type:'client',
     }),
     Profile.create({
       id: 3,
@@ -32,7 +32,7 @@ async function seed() {
       lastName: 'Snow',
       profession: 'Knows nothing',
       balance: 451.3,
-      type:'client'
+      type:'client',
     }),
     Profile.create({
       id: 4,
@@ -40,7 +40,7 @@ async function seed() {
       lastName: 'Kethcum',
       profession: 'Pokemon master',
       balance: 1.3,
-      type:'client'
+      type:'client',
     }),
     Profile.create({
       id: 5,
@@ -48,7 +48,7 @@ async function seed() {
       lastName: 'Lenon',
       profession: 'Musician',
       balance: 64,
-      type:'contractor'
+      type:'contractor',
     }),
     Profile.create({
       id: 6,
@@ -56,7 +56,7 @@ async function seed() {
       lastName: 'Torvalds',
       profession: 'Programmer',
       balance: 1214,
-      type:'contractor'
+      type:'contractor',
     }),
     Profile.create({
       id: 7,
@@ -64,7 +64,7 @@ async function seed() {
       lastName: 'Turing',
       profession: 'Programmer',
       balance: 22,
-      type:'contractor'
+      type:'contractor',
     }),
     Profile.create({
       id: 8,
@@ -72,70 +72,70 @@ async function seed() {
       lastName: 'II Elessar Telcontarvalds',
       profession: 'Fighter',
       balance: 314,
-      type:'contractor'
+      type:'contractor',
     }),
     Contract.create({
       id:1,
       terms: 'bla bla bla',
       status: 'terminated',
       ClientId: 1,
-      ContractorId:5
+      ContractorId:5,
     }),
     Contract.create({
       id:2,
       terms: 'bla bla bla',
       status: 'in_progress',
       ClientId: 1,
-      ContractorId: 6
+      ContractorId: 6,
     }),
     Contract.create({
       id:3,
       terms: 'bla bla bla',
       status: 'in_progress',
       ClientId: 2,
-      ContractorId: 6
+      ContractorId: 6,
     }),
     Contract.create({
       id: 4,
       terms: 'bla bla bla',
       status: 'in_progress',
       ClientId: 2,
-      ContractorId: 7
+      ContractorId: 7,
     }),
     Contract.create({
       id:5,
       terms: 'bla bla bla',
       status: 'new',
       ClientId: 3,
-      ContractorId: 8
+      ContractorId: 8,
     }),
     Contract.create({
       id:6,
       terms: 'bla bla bla',
       status: 'in_progress',
       ClientId: 3,
-      ContractorId: 7
+      ContractorId: 7,
     }),
     Contract.create({
       id:7,
       terms: 'bla bla bla',
       status: 'in_progress',
       ClientId: 4,
-      ContractorId: 7
+      ContractorId: 7,
     }),
     Contract.create({
       id:8,
       terms: 'bla bla bla',
       status: 'in_progress',
       ClientId: 4,
-      ContractorId: 6
+      ContractorId: 6,
     }),
     Contract.create({
       id:9,
       terms: 'bla bla bla',
       status: 'in_progress',
       ClientId: 4,
-      ContractorId: 8
+      ContractorId: 8,
     }),
     Job.create({
       description: 'work',
